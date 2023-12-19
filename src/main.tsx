@@ -16,6 +16,8 @@ import CreatePost, {
 } from "./routes/CreatePost.tsx"; //action as insertName gör att man kan använda namnet action i flera filer och kalla de olika saker i denna fil
 import RequireAuth from "./components/RequierAuth/index.tsx";
 import ShowPost, {loader as showPostLoader} from "./routes/ShowPost.tsx";
+import {action as createCommentAction} from "./components/CommentForm/index.tsx";
+import {action as voteAction} from "./components/VoteComponent/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
             action: createPostAction,
             element: <CreatePost />,
           },
+          {
+            path: "/posts/:postId/comments",
+            action: createCommentAction
+          },
+          {
+            path: "/posts/:postId/vote",
+            action: voteAction
+          }
         ],
       },
     ],

@@ -18,17 +18,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const backendResponse = await response.json();
 
-  return { page, ...backendResponse };
+  return await { page, ...backendResponse };
 };
 
 const Index = () => {
-  const data = useLoaderData() as {
-    posts: Post[];
-    totalPages: number;
-    page: number;
-  }; //Loader är som Action, fast loader hämtar, action skapar
-
-  const [searchParams, setSearchParams] = useSearchParams();
+    const data = useLoaderData() as { posts: Post[], totalPages: number, page: number };   
+    const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div>

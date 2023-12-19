@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Post } from "../../types";
 import Styles from "./PostListItem.module.css";
+import VoteComponent from "../VoteComponent";
 
 const PostListItem = ({ post }: { post: Post }) => {
   return (
     <div className={Styles.post} key={post._id}>
+      <VoteComponent post={post}/>
       <div>
         {post.link ? (
           <Link to={post.link}>

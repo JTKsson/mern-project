@@ -1,32 +1,52 @@
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom"
-import { Post } from "../types"
+import { Link, LoaderFunctionArgs, useFetcher, useLoaderData } from "react-router-dom";
+import { Post } from "../types";
+import CommentForm from "../components/CommentForm";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
 
   const { id } = params;
 
-  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + id, {
-    headers: {
-      "Accepts": "application/json",
+  const response = await fetch(
+    import.meta.env.VITE_BACKEND_URL + "/posts/" + id,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
-  })
+  );
 
-  return response.json()
-  
-}
+  const posts = await response.json();
+
+  return posts;};
 
 const ShowPost = () => {
-  const post = useLoaderData() as Post
+  const post = useLoaderData() as Post;
+
+  // const commentFetcher = useFetcher({key: "comment-form-" + post._id})
 
   return (
     <>
-    <h1>{post.title}</h1>
-    <p>{post.body}</p>
-    <p>{post.author.userName}</p>
-    
-    </>
-  )
-}
+      <div>
+        <div>
+          { post.link ? (
+            <Link to={post.link}>
+              <h2>{post.title}<span>({post.link})</span></h2>
+            </Link>
+          ) : (
+            <h2>{post.title}</h2>
+          )}
+          <p>by {post.author.userName}</p>
+          { post.body && (
+            <div>
+              <p>{post.body}</p>
+            </div>
+          )}
+        </div>
+      </div>
+        <CommentForm postId={post._id} />
+        { post.comments?.map(comment => <p key={comment._id}>{comment.body} - {comment.author.userName}</p>) }    </>
+  );
+};
 
-export default ShowPost
+export default ShowPost;
