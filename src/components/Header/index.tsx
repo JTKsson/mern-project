@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className={Styles.header}>
-      <h1>Timo Fake Redd</h1>
+      <Link to="/"><h1>Timo Fake Redd</h1></Link>
       <div className={Styles.buttons}>
         {isAuthenticated ? (
           <>

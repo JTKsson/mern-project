@@ -1,6 +1,7 @@
 import { Link, LoaderFunctionArgs, useFetcher, useLoaderData } from "react-router-dom";
 import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
+import VoteComponent from "../components/VoteComponent";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -28,6 +29,7 @@ const ShowPost = () => {
   return (
     <>
       <div>
+        <VoteComponent post={post}/>
         <div>
           { post.link ? (
             <Link to={post.link}>
