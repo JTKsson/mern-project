@@ -1,4 +1,4 @@
-import { Link, LoaderFunctionArgs, useFetcher, useLoaderData } from "react-router-dom";
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/VoteComponent";
