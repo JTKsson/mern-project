@@ -14,6 +14,7 @@ export interface Post {
   title: string;
   link?: string;
   body?: string;
+  image?: HTMLImageElement;
   author: {
     _id: string;
     userName: string;

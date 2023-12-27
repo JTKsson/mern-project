@@ -6,15 +6,15 @@ import auth from "../lib/auth";
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
-  const postData = Object.fromEntries(formData.entries());
+  // const postData = Object.fromEntries(formData.entries());
 
   const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       "Authorization": `Bearer ${auth.getJWT()}`,
     },
-    body: JSON.stringify(postData),
+    body: formData
   });
 
   if (!response.ok) {
@@ -31,7 +31,7 @@ const CreatePost = () => {
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Create a new post</h2>
-      <Form className={styles.formContainer} method="post">
+      <Form className={styles.formContainer} method="post" encType="multipart/form-data">
         {error && (
           <p>
             <b>Error:</b>
@@ -49,6 +49,10 @@ const CreatePost = () => {
         <div className={styles.inputField}>
           <label htmlFor="body">Body (optional)</label>
           <input type="body" name="body" id="body" />
+        </div>
+        <div className={styles.inputField}>
+          <label htmlFor="image">Image (optional)</label>
+          <input type="file" name="image" id="image" accept="image/*" />
         </div>
         <div>
           <button className={styles.submitButton} type="submit">
