@@ -10,10 +10,9 @@ import {
 import Index, {loader as indexLoader} from "./routes/index.tsx";
 import SignUp, { action as signUpAction } from "./routes/SignUp.tsx";
 import SignIn, { action as signInAction } from "./routes/SignIn.tsx";
+import {action as updatePostAction} from "./components/UpdatePost/index.tsx";
 import auth from "./lib/auth.ts";
-import CreatePost, {
-  action as createPostAction,
-} from "./routes/CreatePost.tsx"; //action as insertName gör att man kan använda namnet action i flera filer och kalla de olika saker i denna fil
+import CreatePost, { createPostAction } from "./routes/CreatePost.tsx"; //action as insertName gör att man kan använda namnet action i flera filer och kalla de olika saker i denna fil
 import RequireAuth from "./components/RequierAuth/index.tsx";
 import ShowPost, {loader as showPostLoader} from "./routes/ShowPost.tsx";
 import {action as createCommentAction} from "./components/CommentForm/index.tsx";
@@ -64,8 +63,12 @@ const router = createBrowserRouter([
             action: createCommentAction
           },
           {
+            path: "/posts/:postId/update",
+            action: updatePostAction,
+          },
+          {
             path: "/posts/:postId/vote",
-            action: voteAction
+            action: voteAction,
           }
         ],
       },
