@@ -3,13 +3,14 @@ import styles from "./CreatePost.module.css";
 import { ActionData } from "../types";
 import auth from "../lib/auth";
 
-export const action = async (args: ActionFunctionArgs) => {
-  const { postId } = args.params;
-  const formData = await args.request.formData();
+export const action = async ({ request, params }: ActionFunctionArgs) => {
+  const { postId } = params;
+  const formData = await request.formData();
   
   console.log(postId)
+  console.log(formData)
   
-  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts" + postId, {
+  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + postId, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +25,7 @@ export const action = async (args: ActionFunctionArgs) => {
     return { message };
   }
   
-  return redirect("/posts" + postId)
+  return redirect("/")
 };
 
 const UpdatePost = () => {
@@ -32,7 +33,7 @@ const UpdatePost = () => {
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Update a post</h2>
-      <Form className={styles.formContainer} method="post">
+      <Form className={styles.formContainer} method="put">
         {error && (
           <p>
             <b>Error:</b>

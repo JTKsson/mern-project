@@ -2,7 +2,7 @@ import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/VoteComponent";
-import UpdatePost from "./UpdatePost";
+import DeleteComment from "../components/DeleteComment";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -45,11 +45,11 @@ const ShowPost = () => {
               <p>{post.body}</p>
             </div>
           )}
-          <UpdatePost />
         </div>
       </div>
         <CommentForm postId={post._id} />
-        { post.comments?.map(comment => <p key={comment._id}>{comment.body} - {comment.author.userName}</p>) }    </>
+        { post.comments?.map(comment => <><p key={comment._id}>{comment.body} - {comment.author.userName}</p> <DeleteComment post={post} comment={comment}/> </>) }    
+    </>
   );
 };
 

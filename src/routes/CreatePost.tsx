@@ -24,39 +24,10 @@ export const createPostAction = async ({ request }: ActionFunctionArgs) => {
   return redirect("/")
 };
 
-// export const updatePostAction = async ({ request, params }: ActionFunctionArgs) => {
-//   const { postId } = params;
-//   const formData = await request.formData();
 
-//   const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/posts/${postId}`, {
-//     method: "PUT",
-//     headers: {
-//       "Authorization": `Bearer ${auth.getJWT()}`,
-//     },
-//     body: formData
-//   });
-
-//   if (!response.ok) {
-//     const { message } = await response.json();
-//     return { message };
-//   }
-
-//   return redirect("/");
-// };
 
 const CreatePost = () => {
   const error = useActionData() as ActionData;
-
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   // Assuming you have access to postId for updating
-  //   const postId = params;
-  //   // Use the appropriate action based on whether postId exists
-  //   const actionFunction = postId ? updatePostAction : createPostAction;
-
-  //   const response = await actionFunction({ request: { formData }, params: { postId } });
-
-  //   }  };
 
   return (
     <div className={styles.body}>

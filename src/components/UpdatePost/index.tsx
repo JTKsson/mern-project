@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, Form, redirect, useActionData } from "react-router-dom";
 import styles from "./UpdatePost.module.css";
-import { ActionData, Post } from "../../types";
+import { ActionData } from "../../types";
 import auth from "../../lib/auth";
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
@@ -10,7 +10,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   console.log(postId)
   console.log(formData)
   
-  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts" + postId, {
+  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + postId, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -28,12 +28,12 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   return redirect("/")
 };
 
-const UpdatePost = ({ post }: { post: Post }) => {
+const UpdatePost = () => {
   const error = useActionData() as ActionData;
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Update a post</h2>
-      <Form className={styles.formContainer} method="put" action={`/posts/${post._id}/update`}>
+      <Form className={styles.formContainer} method="put">
         {error && (
           <p>
             <b>Error:</b>
