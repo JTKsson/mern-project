@@ -33,15 +33,13 @@ export const action = async (args: ActionFunctionArgs) => {
 
     return redirect("/posts/" + postId);
   } catch (error) {
-    console.error("Error deleding comment: " + error);
+    console.error("Error deleting comment: " + error);
     throw error;
   }
 };
 
 const DeleteComment = ({ comment, post }: { comment: Comment; post: Post }) => {
   const location = useLocation();
-
-  //  const comment = post.comments.comment._id
 
   return (
     <Form

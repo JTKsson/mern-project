@@ -3,6 +3,7 @@ import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/VoteComponent";
 import DeleteComment from "../components/DeleteComment";
+import DeletePost from "../components/DeletePost";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -45,6 +46,7 @@ const ShowPost = () => {
               <p>{post.body}</p>
             </div>
           )}
+          <DeletePost post={post}/>
         </div>
       </div>
         <CommentForm postId={post._id} />
