@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { Post } from "../../types";
 import Styles from "./PostListItem.module.css";
 import VoteComponent from "../VoteComponent";
+import DeletePost from "../DeletePost";
 
 const PostListItem = ({ post }: { post: Post }) => {
   return (
     <div className={Styles.post} key={post._id}>
+      <div className={Styles.contentBox}>
       <VoteComponent post={post} />
       <div className={Styles.postContent}>
         <Link to={`/posts/${post._id}`}>
@@ -19,7 +21,9 @@ const PostListItem = ({ post }: { post: Post }) => {
             <Link to={`/posts/${post._id}`}></Link>
           </span>
         )}
+        </div>
       </div>
+      <DeletePost post={post} />
     </div>
   );
 };

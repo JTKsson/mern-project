@@ -1,5 +1,5 @@
 const signIn = (jwt: string) => {
-  localStorage.setItem("jwt", jwt,);
+  localStorage.setItem("jwt", jwt);
 };
 
 const isSignedIn = () => !!localStorage.getItem("jwt");

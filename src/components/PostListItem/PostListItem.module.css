@@ -2,6 +2,12 @@
   text-transform: capitalize;
 }
 
+.contentBox {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
 .post {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -11,6 +17,7 @@
   flex-direction: row;
   margin: 16px;
   padding: 16px;
+  justify-content: space-between;
 }
 
 .link {
