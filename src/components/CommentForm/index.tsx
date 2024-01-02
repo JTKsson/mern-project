@@ -32,7 +32,7 @@ export const action = async (args: ActionFunctionArgs) => {
 };
 
 const CommentForm = ({ postId }: { postId: string }) => {
-  const fetcher = useFetcher({ key: "comment-form-" + postId });
+  const fetcher = useFetcher({ key: "comment-form-" + postId }); //fetcher.state
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   // fetcher.state //töm fomrläret efter submit
@@ -40,7 +40,6 @@ const CommentForm = ({ postId }: { postId: string }) => {
   return (
     <div>
       <h3>Leave a comment:</h3>
-      <p>Loaded in CommentForm: {fetcher.state}</p>
       <fetcher.Form method="post" action={`/posts/${postId}/comments`}>
         <div>
           <textarea ref={textareaRef} name="body" id="body" required></textarea>
