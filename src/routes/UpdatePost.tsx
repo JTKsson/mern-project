@@ -7,15 +7,17 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const { id } = params
 
+  const postData = Object.fromEntries(formData.entries());
+
   console.log(id)
 
   const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + id, {
     method: "PUT",
     headers: {
+      'Content-Type': 'application/json',
       "Authorization": `Bearer ${auth.getJWT()}`,
     },
-    body: formData
-    
+    body: JSON.stringify(postData),    
   });
   
   if (!response.ok) {
@@ -24,7 +26,8 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     return { message };
   }
   
-  console.log(request)
+ // console.log(request)
+  console.log(request.body)
   return redirect("/posts/" + id)
 };
 
