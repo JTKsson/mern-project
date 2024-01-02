@@ -4,6 +4,7 @@ import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/VoteComponent";
 import DeleteComment from "../components/DeleteComment";
 import DeletePost from "../components/DeletePost";
+// import UpdatePost from "../components/UpdatePost/index";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -21,7 +22,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
   const posts = await response.json();
 
-  return posts;};
+  return posts;
+};
 
 const ShowPost = () => {
   const post = useLoaderData() as Post;
@@ -31,26 +33,37 @@ const ShowPost = () => {
   return (
     <>
       <div>
-        <VoteComponent post={post}/>
+        <VoteComponent post={post} />
         <div>
-          { post.link ? (
+          {post.link ? (
             <Link to={post.link}>
-              <h2>{post.title}<span>({post.link})</span></h2>
+              <h2>
+                {post.title}
+                <span>({post.link})</span>
+              </h2>
             </Link>
           ) : (
             <h2>{post.title}</h2>
           )}
           <p>by {post.author.userName}</p>
-          { post.body && (
+          {post.body && (
             <div>
               <p>{post.body}</p>
             </div>
           )}
-          <DeletePost post={post}/>
+          <DeletePost post={post} />
         </div>
       </div>
-        <CommentForm postId={post._id} />
-        { post.comments?.map(comment => <><p key={comment._id}>{comment.body} - {comment.author.userName}</p> <DeleteComment post={post} comment={comment}/> </>) }    
+      <Link to={`/posts/${post._id}/update`}>Update post</Link>
+      <CommentForm postId={post._id} />
+      {post.comments?.map((comment) => (
+        <>
+          <p key={comment._id}>
+            {comment.body} - {comment.author.userName}
+          </p>{" "}
+          <DeleteComment post={post} comment={comment} />{" "}
+        </>
+      ))}
     </>
   );
 };

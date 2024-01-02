@@ -1,22 +1,22 @@
 import { ActionFunctionArgs, Form, redirect, useActionData } from "react-router-dom";
 import styles from "./UpdatePost.module.css";
-import { ActionData } from "../../types";
+import { ActionData, Post } from "../../types";
 import auth from "../../lib/auth";
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
-  const { postId } = params;
   const formData = await request.formData();
+  const {id} = params
   
-  console.log(postId)
+  console.log(id)
   console.log(formData)
   
-  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + postId, {
+  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/posts/" + id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${auth.getJWT()}`,
     },
-    body: formData
+   body: formData
   });
   
   if (!response.ok) {
@@ -25,15 +25,16 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     return { message };
   }
   
+  //return redirect("/posts/" + args.params.id)
   return redirect("/")
 };
 
-const UpdatePost = () => {
+const UpdatePost = ({ post }: { post: Post }) => {
   const error = useActionData() as ActionData;
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Update a post</h2>
-      <Form className={styles.formContainer} method="put">
+      <Form className={styles.formContainer} method="put" action={`/posts/${post._id}/update`}>
         {error && (
           <p>
             <b>Error:</b>

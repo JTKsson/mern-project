@@ -1,4 +1,8 @@
-import { LoaderFunctionArgs, useLoaderData, useSearchParams } from "react-router-dom";
+import {
+  LoaderFunctionArgs,
+  useLoaderData,
+  useSearchParams,
+} from "react-router-dom";
 import { Post } from "../types";
 import PostListItem from "../components/PostListItem";
 import Paginator from "../components/Paginator";
@@ -22,18 +26,24 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 const Index = () => {
-    const data = useLoaderData() as { posts: Post[], totalPages: number, page: number };   
-    const [searchParams, setSearchParams] = useSearchParams();
+  const data = useLoaderData() as {
+    posts: Post[];
+    totalPages: number;
+    page: number;
+  };
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div>
       {data?.posts.map((post) => (
-        <PostListItem post={post} />
+        <PostListItem post={post} key={post._id} />
       ))}
       <Paginator
         currentPage={data.page}
         totalPages={data?.totalPages}
-        setPage={(page) => setSearchParams({ ...searchParams, page: page.toString() })}
+        setPage={(page) =>
+          setSearchParams({ ...searchParams, page: page.toString() })
+        }
       />
     </div>
   );
