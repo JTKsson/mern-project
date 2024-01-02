@@ -1,4 +1,16 @@
 .active {
-  color: white;
   background-color: brown;
+  color: white;
+}
+
+.container {
+  padding: 16px;
+}
+
+.container>button {
+  border: 1px solid #000000;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  height: fit-content;
+  padding: 4px;
+  width: auto;
 }

@@ -11,7 +11,7 @@ const Paginator = (prop: PaginatorProps) => {
   // const pages = Array.from(Array(prop.totalPages).keys()).map((i) => i + 1);
 
   return (
-    <div>
+    <div className={Styles.container}>
       {pages.map((page) => (
         <button key={page}
           className={page == prop.currentPage ? Styles.active : ""}

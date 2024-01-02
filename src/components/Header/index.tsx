@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className={Styles.header}>
-      <Link to="/"><h1>Timo Fake Redd</h1></Link>
+      <Link to="/"><h1 className={Styles.title}>Shreddit</h1></Link>
       <div className={Styles.buttons}>
         {isAuthenticated ? (
           <>

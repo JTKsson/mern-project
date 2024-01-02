@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, Form, redirect } from "react-router-dom"
 import auth from "../../lib/auth";
 import { Post } from "../../types";
-
+import Styles from "./DeletePost.module.css"
 
 export const action = async (args: ActionFunctionArgs) => {
   const { postId } = args.params;
@@ -45,7 +45,7 @@ const DeletePost = ({ post }: { post: Post }) => {
         value={location.pathname + location.search}
         name="returnTo"
       />
-      <button type="submit">Delete post</button>
+      <button type="submit" className={Styles.button}>Delete post</button>
     </Form>  )
 }
 

@@ -2,6 +2,7 @@ import { ActionFunctionArgs, useFetcher } from "react-router-dom";
 import auth from "../../lib/auth";
 import { Post } from "../../types";
 import {useRef} from "react"
+import Styles from "./CommentForm.module.css"
 
 export const action = async (args: ActionFunctionArgs) => {
   const { postId } = args.params;
@@ -38,7 +39,7 @@ const CommentForm = ({ postId }: { postId: string }) => {
   // fetcher.state //töm fomrläret efter submit
 
   return (
-    <div>
+    <div className={Styles.contentBox}>
       <h3>Leave a comment:</h3>
       <fetcher.Form method="post" action={`/posts/${postId}/comments`}>
         <div>

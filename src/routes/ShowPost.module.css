@@ -1,0 +1,66 @@
+.author,
+.link {
+  font-size: 0.7rem;
+}
+
+.bodyContent {
+  font-size: 1.2rem;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 200px;
+  padding-left: 16px;
+}
+
+.commentAuthor {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.commentContainer {
+  padding: 16px;
+}
+
+.commentContent {
+  border: 1px solid #3f3f3f;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 4px;
+  padding: 4px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 16px;  
+}  
+
+.updatePostButton {
+    border: 1px solid #000000;
+    border-radius: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 0.8rem;
+    padding: 4px 8px
+}
+
+.updatePostButton:hover {
+  background-color: #efefef;
+}
+
+.postContent {
+  margin-left: 16px;
+}  
+
+.postBody {
+  margin-top: 16px;
+}
+
+.title {
+  text-transform: capitalize;
+}

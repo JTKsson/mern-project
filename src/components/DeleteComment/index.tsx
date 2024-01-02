@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import auth from "../../lib/auth";
 import { Comment, Post } from "../../types";
+import Styles from "./DeleteComment.module.css"
 
 export const action = async (args: ActionFunctionArgs) => {
   const { postId, commentId } = args.params;
@@ -52,7 +53,7 @@ const DeleteComment = ({ comment, post }: { comment: Comment; post: Post }) => {
         value={location.pathname + location.search}
         name="returnTo"
       />
-      <button type="submit">Delete comment</button>
+      <button type="submit" className={Styles.button}>Delete comment</button>
     </Form>
   );
 };

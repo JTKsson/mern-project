@@ -4,7 +4,7 @@ import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/VoteComponent";
 import DeleteComment from "../components/DeleteComment";
 import DeletePost from "../components/DeletePost";
-// import UpdatePost from "../components/UpdatePost/index";
+import Styles from "./ShowPost.module.css";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -32,38 +32,39 @@ const ShowPost = () => {
 
   return (
     <>
-      <div>
+      <div className={Styles.container}>
         <VoteComponent post={post} />
-        <div>
+        <div className={Styles.postContent}>
+          <h2 className={Styles.title}>{post.title}</h2>
           {post.link ? (
             <Link to={post.link}>
-              <h2>
-                {post.title}
-                <span>({post.link})</span>
-              </h2>
+              <p className={Styles.link}>({post.link})</p>
             </Link>
           ) : (
-            <h2>{post.title}</h2>
+            ""
           )}
-          <p>by {post.author.userName}</p>
           {post.body && (
-            <div>
-              <p>{post.body}</p>
+            <div className={Styles.postBody}>
+              <p className={Styles.bodyContent}>{post.body}</p>
+              <p className={Styles.author}>by {post.author.userName}</p>
             </div>
           )}
-          <DeletePost post={post} />
         </div>
       </div>
-      <Link to={`/posts/${post._id}/update`}>Update post</Link>
-      <CommentForm postId={post._id} />
-      {post.comments?.map((comment) => (
-        <>
-          <p key={comment._id}>
-            {comment.body} - {comment.author.userName}
-          </p>{" "}
-          <DeleteComment post={post} comment={comment} />{" "}
-        </>
-      ))}
+      <div className={Styles.buttonContainer}>
+        <DeletePost post={post} />
+        <Link className={Styles.updatePostButton} to={`/posts/${post._id}/update`}>Update post</Link>
+      </div>
+      <div className={Styles.commentContainer}>
+        <CommentForm postId={post._id} />
+        {post.comments?.map((comment) => (
+          <div key={comment._id} className={Styles.commentContent}>
+            <p className={Styles.commentAuthor}>{comment.author.userName}</p>
+            <p>{comment.body}</p>
+            <DeleteComment post={post} comment={comment} />
+          </div>
+        ))}
+      </div>
     </>
   );
 };
